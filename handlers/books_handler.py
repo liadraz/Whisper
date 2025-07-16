@@ -1,5 +1,5 @@
 from models import DialogFlowRequest
-from scraper import scrape_books, get_genre_slug_map
+from scraper.books import get_genre_slug_map, scrape_books
 
 def books_handler(body: DialogFlowRequest):
 
