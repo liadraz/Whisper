@@ -8,10 +8,11 @@ def handle_intent(body: DialogFlowRequest):
     
     match intent:
         case "SearchBooks":
-            return books_handler(body)
+            message = books_handler(body)
         case "SearchLaptops":
-            return laptops_handler(body)
+            message = laptops_handler(body)
         case _:
-            return {"fulfillmentText": "Sorry, I didn't understand your request."}
+            message = "Sorry, I didn't understand your request."
     
+    return { "fulfillmentText": message }
     
