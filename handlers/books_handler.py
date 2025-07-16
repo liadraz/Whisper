@@ -7,7 +7,7 @@ def books_handler(body: DialogFlowRequest):
     genre = raw_genre.strip().lower() if raw_genre else None
     
     slug_map = get_genre_slug_map()
-    genre_slug = slug_map.get(genre) if genre else None
+    genre_slug = slug_map.get(genre)
     
     books = scrape_books(genre_slug)
     
@@ -30,7 +30,7 @@ def books_handler(body: DialogFlowRequest):
         return "Sorry, no books found matching your criteria."
     
     lines = [
-        f"{i + 1}. {book["title"]} - ${book["price"]:.2f} - {book["genre"]} - {book["link"]}"
+        f"{i + 1}. {book["title"]} - ${book["price"]:.2f} - {book["link"]}"
         for i, book in enumerate(results)
     ]
     
@@ -39,5 +39,4 @@ def books_handler(body: DialogFlowRequest):
 
 # title
 # price
-# genre
 # product link
