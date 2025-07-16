@@ -1,5 +1,6 @@
 from models import DialogFlowRequest
-import handlers
+from handlers.books_handler import books_handler
+from handlers.laptops_handler import laptops_handler
 
 def handle_intent(body: DialogFlowRequest):
     
