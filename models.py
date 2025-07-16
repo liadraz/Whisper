@@ -13,8 +13,9 @@ class DialogFlowRequest(BaseModel):
     queryResult: QueryResult
     
     
-
-#  DialogFlow model webhook request
+#
+#  DialogFlow webhook sample request
+#
 # {
 #   "queryResult": {
 #     "intent": {
