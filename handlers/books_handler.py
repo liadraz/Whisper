@@ -1,27 +1,21 @@
 from models import DialogFlowRequest
-from scraper.books import get_genre_slug_map, scrape_books
+from typing import Optional
+
+from scraper.books import build_url, scrape_books
+
+# Webhook request parameters
+GENRE = "genre"
+PRICE_LIMIT = "price_limit"
 
 def books_handler(body: DialogFlowRequest):
 
-    raw_genre = body.queryResult.parameters.get("genre")
-    genre = raw_genre.strip().lower() if raw_genre else None
+    genre = parse_text(body.queryResult.parameters.get(GENRE))
+    price_limit = parse_price(body.queryResult.parameters.get(PRICE_LIMIT))
     
-    slug_map = get_genre_slug_map()
-    genre_slug = slug_map.get(genre)
-    
-    books = scrape_books(genre_slug)
-    
-    raw_price = body.queryResult.parameters.get("price_limit")
-    
-    if raw_price in (None, ""):
-        price_limit = None
-    else:
-        try:
-            price_limit = float(raw_price)
-        except ValueError:
-            price_limit = None
+    books = scrape_books(build_url(genre))
     
     results = []
+    
     for book in books:
         if price_limit is None or book["price"] <= price_limit:
             results.append(book)
@@ -35,8 +29,15 @@ def books_handler(body: DialogFlowRequest):
     ]
     
     return f"Here are some books for you:\n {'\n'.join(lines)}"
-    
 
-# title
-# price
-# product link
+
+def parse_text(value: Optional[str]) -> Optional[str]:
+    return value.strip().lower() if value and value.strip() else None
+
+def parse_price(raw: Optional[str]) -> Optional[float]:
+    if not raw:
+        return None
+    try:
+        return float(raw)
+    except (ValueError, TypeError):
+        return None
