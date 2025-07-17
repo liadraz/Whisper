@@ -45,10 +45,10 @@ def scrape_books(genre_url: Optional[str]):
         title = book.h3.a["title"]
         
         raw_price = book.select_one(".price_color").text.strip()
-        price = float(raw_price.replace('£', '')) 
+        price = float(raw_price.replace('£', "")) 
         
         href = book.h3.a["href"]
-        link = BASE_URL + href.replace('../../../', '')
+        link = BASE_URL + href.replace("../../../", "")
         
         book_data = {
             "title": title,
