@@ -56,7 +56,7 @@ pip install -r requirements.txt
 2. **Start FastAPI server:**
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
 3. **Expose local server to Dialogflow using ngrok:**
