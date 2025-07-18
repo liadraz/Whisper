@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Dict
+from typing import Dict, Any
 
 
 class IntentInfo(BaseModel):
@@ -7,7 +7,7 @@ class IntentInfo(BaseModel):
 
 class QueryResult(BaseModel):
     intent: IntentInfo
-    parameters: Dict[str, str]
+    parameters: Dict[str, Any]
     
 class DialogFlowRequest(BaseModel):
     queryResult: QueryResult
