@@ -35,8 +35,8 @@
 ### ✅ 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/whisper-chatbot.git
-cd whisper-chatbot
+git clone https://github.com/liadraz/Whisper.git
+cd whisper
 ````
 
 ---
@@ -156,7 +156,7 @@ Here are some books for you:
 To test locally:
 
 ```bash
-pytest
+pytest run_tests.py
 ```
 
 Tests are written for:
@@ -164,10 +164,3 @@ Tests are written for:
 * Fetching book pages
 * Scraping book info
 * URL building and genre mapping
-
----
-
-## 👨‍💻 Author
-
-**Liad Raz**
-📎 GitHub: [liadraz](https://github.com/liadraz)
