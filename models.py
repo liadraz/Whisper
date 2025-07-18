@@ -22,7 +22,8 @@ class DialogFlowRequest(BaseModel):
 #       "displayName": "SearchProduct"
 #     },
 #     "parameters": {
-#       "product": "laptop"
+#       "product": "laptop",
+#       "price": 40
 #     }
 #   }
 # }
