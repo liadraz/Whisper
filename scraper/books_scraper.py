@@ -71,7 +71,7 @@ def fetch_page(url: str):
     response = httpx.get(url, headers=headers)
 
     if response.status_code != 200:
-        raise httpx.HTTPStatusError(f"Request failed with status {response.status_code}")
+        raise httpx.HTTPStatusError(f"Request failed with status {response.status_code}", request=response.request, response=response)
 
     return response.text
 
