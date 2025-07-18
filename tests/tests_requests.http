@@ -1,0 +1,18 @@
+###
+
+POST http://127.0.0.1:8000
+Content-Type: application/json
+
+{
+  "queryResult": {
+    "intent": {
+      "displayName": "SearchBooks"
+    },
+    "parameters": {
+      "genre": "Travel",
+      "price_limit": "50"
+    }
+  }
+}
+
+###
