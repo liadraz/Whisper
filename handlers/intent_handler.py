@@ -1,4 +1,4 @@
-from models import DialogFlowRequest
+from models.dialogflow_request import DialogFlowRequest
 from handlers.books_handler import books_handler
 from handlers.laptops_handler import laptops_handler
 

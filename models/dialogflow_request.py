@@ -14,7 +14,7 @@ class DialogFlowRequest(BaseModel):
     
     
 #
-#  DialogFlow webhook sample request
+# Sample Dialogflow webhook request body:
 #
 # {
 #   "queryResult": {
@@ -27,3 +27,9 @@ class DialogFlowRequest(BaseModel):
 #     }
 #   }
 # }
+#
+# Explanation:
+# - "displayName": name of the matched intent.
+# - "parameters": extracted entities from the user's input.
+#     - "product": the item the user is interested in.
+#     - "price": price limit or budget specified by the user.

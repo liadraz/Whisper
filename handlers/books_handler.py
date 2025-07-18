@@ -1,7 +1,7 @@
-from models import DialogFlowRequest
 from typing import Optional
-
-from scraper.books import build_url, scrape_books
+from models.dialogflow_request import DialogFlowRequest
+from scraper.books_scraper import build_url, scrape_books
+from utils.string_utils import parse_text, parse_float
 
 # Webhook request parameters
 GENRE = "genre"
@@ -10,7 +10,7 @@ PRICE_LIMIT = "price_limit"
 def books_handler(body: DialogFlowRequest):
 
     genre = parse_text(body.queryResult.parameters.get(GENRE))
-    price_limit = parse_price(body.queryResult.parameters.get(PRICE_LIMIT))
+    price_limit = parse_float(body.queryResult.parameters.get(PRICE_LIMIT))
     
     books = scrape_books(build_url(genre))
     
@@ -31,13 +31,3 @@ def books_handler(body: DialogFlowRequest):
     return f"Here are some books for you:\n {'\n'.join(lines)}"
 
 
-def parse_text(value: Optional[str]) -> Optional[str]:
-    return value.strip().lower() if value and value.strip() else None
-
-def parse_price(raw: Optional[str]) -> Optional[float]:
-    if not raw:
-        return None
-    try:
-        return float(raw)
-    except (ValueError, TypeError):
-        return None
